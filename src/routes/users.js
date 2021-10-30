@@ -9,7 +9,7 @@ router.get("/", async function (req, res){
    return res.send (users)
 })
 
-router.post("/", (req, res) => {
+router.post("/", async function (req, res) {
    
     //verificando se todos os dados foram passados
     if (!req.body || !req.body.nome || !req.body.sobrenome || !req.body.email || !req.body.celular || !req.body.telefone || !req.body.senha) {
@@ -19,7 +19,17 @@ router.post("/", (req, res) => {
 
     }
     console.log (req.body)
-    res.sendStatus(200)
+
+   await userModel.create ({
+       name: req.body.nome,
+       lastName: req.body.sobrenome,
+       email: req.body.email,
+       phone: req.body. telefone,
+       mobile: req.body.celular
+
+   })
+
+   return res.sendStatus (201)
 })
 
 module.exports = router
