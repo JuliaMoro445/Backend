@@ -32,4 +32,11 @@ router.post("/", async function (req, res) {
    return res.sendStatus (201)
 })
 
+router.delete("/", async function (req, res) {
+   
+   var id = req.body.id
+   await userModel.deleteOne({_id: id})
+   res.sendStatus(200)
+})
+
 module.exports = router
